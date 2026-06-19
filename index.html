@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DVF Pre-Order App</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden; /* Prevents double scrolling */
+        background-color: #f4f6f8;
+      }
+      
+      /* The outer wrapper hides anything that spills outside of it */
+      .iframe-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      /* The iframe is pulled up by 36px to hide the Google banner */
+      .app-iframe {
+        position: absolute;
+        left: 0;
+        width: 100%;
+		height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="iframe-wrapper">
+      <iframe class="app-iframe" src="https://script.google.com/macros/s/AKfycbxY-59f_L8FjKo7SnmOvlq48WQmxEczX4aVoGYAzQx_yWuxOyYcw5XfpHXvO6D9GPGG/exec?view=coordinator"></iframe>
+    </div>
+  </body>
+</html>
