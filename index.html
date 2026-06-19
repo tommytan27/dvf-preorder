@@ -32,27 +32,29 @@
   </head>
   <body>
     <div class="iframe-wrapper">
-      <iframe class="app-iframe" src="https://script.google.com/macros/s/AKfycbxY-59f_L8FjKo7SnmOvlq48WQmxEczX4aVoGYAzQx_yWuxOyYcw5XfpHXvO6D9GPGG/exec"></iframe>
+      <iframe id="appFrame" class="app-iframe"></iframe>
     </div>
 	<script>
-      (function() {
-        // 1. Grab any URL parameters currently in the browser's address bar
+      window.addEventListener('DOMContentLoaded', function() {
+        // 1. Define your base script deployment link safely here
+        const baseScriptUrl = "https://script.google.com/macros/s/AKfycbxY-59f_L8FjKo7SnmOvlq48WQmxEczX4aVoGYAzQx_yWuxOyYcw5XfpHXvO6D9GPGG/exec";
+        
+        // 2. Fetch the incoming parameters from the browser address bar
         const currentUrlParams = window.location.search;
+        const iframe = document.getElementById('appFrame');
         
         if (currentUrlParams) {
-          const iframe = document.getElementById('appFrame');
-          const baseSrc = iframe.src;
-          
-          // 2. Safely stitch the parameters onto the Google Apps Script execution URL
-          if (baseSrc.indexOf('?') !== -1) {
-            // If the base URL somehow already has a parameter, append with '&'
-            iframe.src = baseSrc + currentUrlParams.replace('?', '&');
+          // If parameters like ?view=coordinator exist, cleanly append them
+          if (baseScriptUrl.indexOf('?') !== -1) {
+            iframe.src = baseScriptUrl + currentUrlParams.replace('?', '&');
           } else {
-            // Otherwise, append normally with '?'
-            iframe.src = baseSrc + currentUrlParams;
+            iframe.src = baseScriptUrl + currentUrlParams;
           }
+        } else {
+          // Otherwise, build the plain execution path safely
+          iframe.src = baseScriptUrl;
         }
-      })();
+      });
     </script>
   </body>
 </html>
