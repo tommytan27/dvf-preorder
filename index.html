@@ -34,5 +34,25 @@
     <div class="iframe-wrapper">
       <iframe class="app-iframe" src="https://script.google.com/macros/s/AKfycbxY-59f_L8FjKo7SnmOvlq48WQmxEczX4aVoGYAzQx_yWuxOyYcw5XfpHXvO6D9GPGG/exec"></iframe>
     </div>
+	<script>
+      (function() {
+        // 1. Grab any URL parameters currently in the browser's address bar
+        const currentUrlParams = window.location.search;
+        
+        if (currentUrlParams) {
+          const iframe = document.getElementById('appFrame');
+          const baseSrc = iframe.src;
+          
+          // 2. Safely stitch the parameters onto the Google Apps Script execution URL
+          if (baseSrc.indexOf('?') !== -1) {
+            // If the base URL somehow already has a parameter, append with '&'
+            iframe.src = baseSrc + currentUrlParams.replace('?', '&');
+          } else {
+            // Otherwise, append normally with '?'
+            iframe.src = baseSrc + currentUrlParams;
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
